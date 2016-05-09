@@ -30,4 +30,4 @@ if __name__ == '__main__':
     url_moonwalk = 'http://online.anidub.com/anime_tv/full/9197-ansatsu-kyoushitsu.html'
     url_sibnet = "http://online.anidub.com/anime_tv/anime_ongoing/9589-klass-ubiyc-tv-2-ansatsu-kyoushitsu-tv-2-01-iz-25.html"
     url_vk = "http://online.anidub.com/anime_tv/anime_ongoing/9747-prikaz-svyshe-big-order-01-iz-16.html"
-    print(url_reader(url_moonwalk))
+    url_reader(url_moonwalk)

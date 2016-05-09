@@ -40,8 +40,8 @@ def grab_video(video_url):
     main_playlist_url = json.loads(playlist_data.read().decode('UTF-8'))['manifest_m3u8']
     playlist_req = request.Request(main_playlist_url, headers=http_headers.user_agent)
     playlist = request.urlopen(playlist_req)
-    result_playlist_data = playlist.read().decode('UTF-8').strip('\n')
-    playlist_result = "%s\n%s\n\n" % (result_playlist_data[-1], ''.join(result_playlist_data[:-1]))
+    result_playlist_data = playlist.read().decode('UTF-8').split('\n')[1:]
+    playlist_result = '\n'.join(result_playlist_data)
     return playlist_result
 
 
