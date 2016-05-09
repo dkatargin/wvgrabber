@@ -41,7 +41,7 @@ def grab_video(video_url):
     playlist_req = request.Request(main_playlist_url, headers=http_headers.user_agent)
     playlist = request.urlopen(playlist_req)
     result_playlist_data = playlist.read().decode('UTF-8').split('\n')[1:]
-    playlist_result = '\n'.join(result_playlist_data)
+    playlist_result = '\n'.join(result_playlist_data).replace('#EXT-X-STREAM-INF:', '')
     return playlist_result
 
 
