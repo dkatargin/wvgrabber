@@ -37,8 +37,12 @@ def grab_video(video_url):
     post.add_header('Accept-Language', 'ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4')
     post.add_header('Cookie', '')
     playlist_data = request.urlopen(post)
-    playlist = json.loads(playlist_data.read().decode('UTF-8'))
-    return playlist['manifest_m3u8']
+    main_playlist_url = json.loads(playlist_data.read().decode('UTF-8'))['manifest_m3u8']
+    playlist_req = request.Request(main_playlist_url, headers=http_headers.user_agent)
+    playlist = request.urlopen(playlist_req)
+    result_playlist_data = playlist.read().decode('UTF-8').strip('\n')
+    playlist_result = "%s\n%s\n\n" % (result_playlist_data[-1], ''.join(result_playlist_data[:-1]))
+    return playlist_result
 
 
 def __get_post_data(url_data):
