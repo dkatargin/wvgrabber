@@ -7,10 +7,13 @@ def grab_video(video_url):
     video_url = "http://vk.com/"+real_vk_url_end
     req = request.Request(video_url, headers=http_headers.user_agent)
     url_data = request.urlopen(req)
-    return __get_playlist(url_data)
+    return video_url
+    #return __get_playlist(url_data)
 
 
 def __get_playlist(url_data):
+    # VK make individual link for each IP
+    # this code will not work with telegram
     result = b''
     for l in url_data.readlines():
         if b'.mp4' in l:
