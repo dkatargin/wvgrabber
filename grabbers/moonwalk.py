@@ -6,6 +6,7 @@ from common import http_headers
 
 
 def grab_video(video_url):
+    video_url = video_url.replace('mooonwalk.co', 'moonwalk.cc')
     req = request.Request(video_url, headers=http_headers.user_agent)
     url_data = request.urlopen(req)
     session_url = 'http://moonwalk.cc/sessions/create_session'
@@ -40,8 +41,8 @@ def grab_video(video_url):
     main_playlist_url = json.loads(playlist_data.read().decode('UTF-8'))['manifest_m3u8']
     playlist_req = request.Request(main_playlist_url, headers=http_headers.user_agent)
     playlist = request.urlopen(playlist_req)
-    result_playlist_data = playlist.read().decode('UTF-8').split('\n')[1:]
-    playlist_result = '\n'.join(result_playlist_data).replace('#EXT-X-STREAM-INF:', '')
+    result_playlist_data = playlist.read().decode('UTF-8').split('\n')[-2]
+    playlist_result = result_playlist_data.replace('#EXT-X-STREAM-INF:', '').strip()
     return playlist_result
 
 

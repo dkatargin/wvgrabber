@@ -20,4 +20,4 @@ def __get_playlist(url_data):
             result = l
         else: continue
     raw_urls = [u.split(b'?')[0].replace(b'\\', b'').decode('UTF-8') for u in result.split(b'{', 1)[1].rsplit(b'}', 1)[0].split(b',') if b'url' in u and b'current' not in u]
-    return '\n'.join(raw_urls)
+    return ':'.join(raw_urls[-1].split(':')[1:]).replace('"','')
