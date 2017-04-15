@@ -15,6 +15,6 @@ def __get_playlist(url_data):
             playstr = l
         else:
             continue
-    playlist_url_end = [i for i in playstr.split(b',') if b"\'file\'" in i][0].split(b':')[1].decode('utf-8').strip().replace('\'','')
+    playlist_url_end = [i for i in playstr.split(b',') if b'm3u8' in i][0].split(b':')[1].decode('utf-8').strip().replace('\'', '').replace('\"', '')
     playlist_url = "http://video.sibnet.ru"+playlist_url_end
     return playlist_url
